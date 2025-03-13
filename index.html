@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Holi</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+    <!-- Background Video -->
+    <div id="video-container">
+        <video autoplay loop muted>
+            <source src="holi video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div id="overlay"></div>
+    </div>
+    <audio id="backgroundMusic" autoplay loop>
+    <source src="./holi.mp3" type="audio/mp3">
+    Your browser does not support the audio tag.
+</audio>
+    <!-- Main Content -->
+    <div id="content">
+        <h1 class="holi-title">Happy Holi!</h1>
+        <p class="subtitle">Rangon ka tyohar, doston ke saath!</p>
+        <button id="wishButton">Open Letter</button>
+    </div>
+
+    <!-- Modal for Letter -->
+    <div id="letterModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModalBtn">&times;</span>
+            <div id="letterCard"></div>
+        </div>
+    </div>
+</body>
+</html>

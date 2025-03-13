@@ -1,0 +1,353 @@
+/* ✅ Holi Theme Background */
+body {
+    position: relative;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+}
+
+/* ✅ Background Image with Reduced Opacity */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://img.freepik.com/premium-photo/abstract-colorful-textured-background-festival-colors-holi-celebration-colorful-powder-image_593195-1363.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.2;
+    z-index: -1;
+}
+
+/* 🎨 Title Styling */
+.title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #333;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+}
+
+/* 🖼️ Gallery Grid - 4 Columns */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+/* ✅ Image Container */
+.image-container {
+    position: relative;
+    width: 270px;
+    height: 270px;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-shadow: 0 0 15px rgba(128, 0, 128, 0.6),
+                0 0 25px rgba(186, 85, 211, 0.5),
+                0 0 35px rgba(147, 112, 219, 0.5);
+}
+
+/* ✅ Overlay Text "Click on me" */
+.image-container::before {
+    content: "Click on me";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.6);
+    color: rgb(255, 255, 255);
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 8px;
+    transition: opacity 0.3s ease-in-out;
+    text-align: center;
+    opacity: 1;
+}
+
+.image-container:hover::before {
+    opacity: 0;
+}
+
+.image-container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(128, 0, 128, 0.8),
+                0 0 30px rgba(186, 85, 211, 0.7),
+                0 0 40px rgba(147, 112, 219, 0.7);
+}
+
+/* ✅ Image Styling */
+.holi-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s ease-in-out;
+    opacity: 1;
+}
+
+.image-container:hover .holi-image {
+    opacity: 1;
+}
+
+/* ✅ Improved Poetry Card for Readability */
+.poetry-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Improved transparency */
+    backdrop-filter: blur(5px); /* Modern glass effect */
+    color: white;
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    border-radius: 12px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-container:hover .poetry-card {
+    opacity: 1;
+}
+
+.poetry-text {
+    font-family: "Noto Serif Devanagari", serif;
+    font-size: min(5vw, 4vh);
+    line-height: 1.5;
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Text shadow for better contrast */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-line;
+    display: block;
+    max-height: 100%;
+    overflow-y: auto;
+    padding-right: 15px;
+    /* padding: 15px; */
+}
+@media (min-width: 1024px) {
+    .poetry-text {
+        font-size: 1rem; /* Laptop/PC pe bada na ho */
+        line-height: 1.6;
+    }
+}
+
+/* ✅ Text Between Images and Button */
+.text-between {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+/* ✅ Button Wrapper Centering */
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+/* ✅ Stylish Back to Home Button */
+.back-to-home {
+    background: linear-gradient(45deg, #ff6b6b, #ffdde1);
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.5);
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ✅ Button Hover Effect */
+.back-to-home:hover {
+    transform: scale(1.1);
+    background: linear-gradient(45deg, #ff4b4b, #ff99aa);
+    box-shadow: 0 6px 20px rgba(255, 77, 77, 0.7);
+}
+
+/* ✅ Rainbow Cursor */
+.custom-cursor {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(45deg, red, orange, yellow, green, cyan, blue, violet);
+    background-size: 400% 400%;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    animation: rainbowShift 3s infinite linear;
+    z-index: 10000;
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.8);
+    filter: blur(15px);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* ✅ Smooth Rainbow Animation */
+@keyframes rainbowShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.feedback-text {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+/* 🔥 Animated Link */
+.animated-link {
+    display: inline-block;
+    color: #007bff;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 20px;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+}
+
+/* 🎨 Underline Animation */
+.animated-link::after {
+    content: "";
+    width: 100%;
+    height: 3px;
+    background: #007bff;
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* 🖱️ Hover Effect (For PC) */
+.animated-link:hover {
+    color: #0056b3;
+}
+
+.animated-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* 📱 Mobile Tap Effect */
+.animated-link:active {
+    color: #ff5722;
+    transform: scale(1.05);
+}
+
+/* 🔄 Glow Animation */
+@keyframes glow {
+    0% { text-shadow: 0 0 5px #007bff; }
+    50% { text-shadow: 0 0 15px #00ffea; }
+    100% { text-shadow: 0 0 5px #007bff; }
+}
+
+.animated-link {
+    animation: glow 1.5s infinite alternate;
+}
+
+/* 📱 Mobile Friendly Text Size */
+@media (max-width: 600px) {
+    .animated-link {
+        font-size: 18px;
+    }
+}
+
+
+/* ✅ Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .title {
+        font-size: 2rem; /* Thoda chhota font */
+    }
+
+    .gallery {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns instead of 4 */
+        gap: 25px; /* Kam gap */
+        max-width: 100%;
+    }
+
+    .image-container {
+        width: 100%; /* Full width */
+        height: auto;
+    }
+
+    .poetry-card {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7); /* Dark overlay for readability */
+        color: white;
+        font-size: clamp(1.5rem, 5vw, 2.5rem); /* 👈 Yeh line paste karo */
+        line-height: 1.6;
+        text-align: center;
+        padding: 10px;
+        border-radius: 12px;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+
+
+    .text-between {
+        font-size: 1rem; /* Thoda chhota */
+    }
+
+    .back-to-home {
+        font-size: 16px; /* Chhota button */
+        padding: 10px 20px;
+    }
+
+    /* ✅ Hide Rainbow Cursor on Mobile for Performance */
+    .custom-cursor {
+        display: none;
+    }
+}
+
+/* ✅ Extra Small Devices (Less than 480px) */
+@media (max-width: 480px) {
+    .title {
+        font-size: 1.8rem; /* Aur chhota */
+    }
+
+    .gallery {
+        grid-template-columns: repeat(1, 1fr); /* 1 column for very small screens */
+    }
+
+    .image-container {
+        width: 100%; /* Full width images */
+        height: auto;
+    }
+
+    .poetry-card {
+        font-size: 0.7rem;
+    }
+
+    .back-to-home {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holi Gallery</title>
+    <link rel="stylesheet" href="gallery-style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@100..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        #musicToggle {
+            position: absolute;
+            top: 40px;
+            right: 20px;
+            background: rgba(238, 236, 236, 0.8);
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+        }
+
+        #musicToggle:hover {
+            background: rgba(255, 255, 255, 1);
+        }
+    </style>
+</head>
+<body>
+    <audio id="holiMusic" loop>
+        <source src="./labon ko.mp3" type="audio/mp3">
+    </audio>
+    <button id="musicToggle"><i class="fas fa-pause"></i></button>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const music = document.getElementById("holiMusic");
+            const toggleButton = document.getElementById("musicToggle");
+            let isPlaying = localStorage.getItem("isPlaying") === "true"; // Load last state
+            let firstClick = false; // Track user interaction
+            let wasPlaying = false; // Track if music was playing before tab switch
+    
+            function playMusic() {
+                music.play().then(() => {
+                    music.muted = false;
+                    localStorage.setItem("isPlaying", "true");
+                    firstClick = true; // Mark that user interacted
+                    document.removeEventListener("click", playMusic); // Remove event after first click
+                }).catch(err => console.log("Autoplay blocked! Waiting for user interaction."));
+            }
+    
+            // ✅ Jab user tab minimize kare ya switch kare toh music pause ho jaye
+            document.addEventListener("visibilitychange", function () {
+                if (document.hidden) {
+                    wasPlaying = !music.paused; // Store play state
+                    music.pause();
+                } else if (wasPlaying) {
+                    music.play(); // Resume if it was playing before
+                }
+            });
+    
+            // 🟢 Click anywhere to play music instantly
+            document.addEventListener("click", function () {
+                if (!firstClick) playMusic();
+            });
+    
+            // 🔄 Resume music if it was playing before
+            if (isPlaying) playMusic();
+    
+            // 🎵 Toggle button to play/pause
+            toggleButton.addEventListener("click", function (event) {
+                event.stopPropagation(); // Prevent conflict with global click
+                if (music.paused) {
+                    playMusic();
+                    toggleButton.innerHTML = '<i class="fas fa-pause"></i>';
+                } else {
+                    music.pause();
+                    toggleButton.innerHTML = '<i class="fas fa-play"></i>';
+                    localStorage.setItem("isPlaying", "false");
+                }
+            });
+        });
+    </script>
+    <div class="gallery-container">
+        <h1 class="title">Holi Memories 🎨</h1>
+        <div class="gallery">
+            <div class="image-container" data-poetry="
+                तेरी आँखों में जो उतरी है चाँदनी सी,
+वो मेरी रातों की ताबीर बन गई है।
+
+लब खामोश हैं, फिर भी कह रहे हैं,
+तेरी चाहत मेरी तक़दीर बन गई है।
+
+तेरी ज़ुल्फ़ों की छाँव में ठहर जाऊँ,
+जैसे सावन कोई तस्वीर बन गई है।
+
+हर साँस में अब बस तेरा नाम है,
+मोहब्बत मेरी इबादत की ज़ंजीर बन गई है।
+            ">
+                <img src="./photo_6240200668199634291_y.jpg" alt="Holi Image 1" class="holi-image">
+                <div class="poetry-card">
+                    <div class="poetry-text"></div>
+                </div>
+            </div>
+            
+            <div class="image-container" data-poetry="तेरी हँसी में बसती हैं सौगातें कितनी,
+तेरी दुआओं में मिलती हैं बरसातें कितनी।
+
+तेरे बिना ये घर भी तो घर सा नहीं,
+तेरे बिना ये राहें भी रहगुज़र सा नहीं।
+
+दूर रहकर भी तू दिल के पास रहती है,
+सच कहूँ, बहना, तू मेरी साँस जैसी है। ❤️">
+                <img src="./photo_6240200668199634292_y.jpg" alt="Holi Image 2" class="holi-image">
+                <div class="poetry-card">
+                    <div class="poetry-text"></div>
+                </div>
+            </div>
+            
+            <div class="image-container" data-poetry="तेरी आँखों में चाँदनी छलकती,
+हर नज़र से मोहब्बत बरसती।
+
+तेरी बातें हैं जैसे शबनम के कतरे,
+जो दिल को सुकून-सा देके गुजरती।
+
+जो रूठे तो दुनिया उदास हो जाए,
+जो हँसे तो बहारें महकती।
+
+मैं हर बार तुझे मुस्कुराने को चाहूँ,
+तेरी खुशियों में मेरी खुशी चमकती।">
+                <img src="./photo_6240200668199634293_y.jpg" alt="Holi Image 3" class="holi-image">
+                <div class="poetry-card">
+                    <div class="poetry-text"></div>
+                </div>
+            </div>
+            
+            <div class="image-container" data-poetry="तू हर घड़ी बस मेरा ख़्याल रखे,
+मेरी राहों में रोशन मिसाल रखे।
+
+न कोई छल तुझमें, ना चालाकियाँ,
+तेरी सादगी ही कमाल रखे।
+
+मैं कहूँ तो घंटों सुने बिन थके,
+मुस्कुरा के मेरी हर बात रखे।
+
+ग़मों की अंधेरी घटाएँ घिरें,
+तू फिर भी उजाले का हाल रखे।">
+                <img src="./photo_6240200668199634294_y.jpg" alt="Holi Image 4" class="holi-image">
+                <div class="poetry-card">
+                    <div class="poetry-text"></div>
+                </div>
+            </div>            
+        </div>
+    </div>
+    <p class="text-between"><b>Thank you for visiting my website!</b> <br><br>  
+        <b> Bas bas, zyada sharma mat! 😏<br>
+            Jaldi se message karke batao, kaisi lagi website aur shayari? 💬</b><br>
+           👇 Neeche click karke feedback do! ✨ <br>  
+           <p class="feedback-text">
+               <a href="https://wa.me/91 9455331645" target="_blank" class="animated-link">
+                   💬 Got thoughts? Let's chat on WhatsApp! ✍️
+               </a>
+           </p>
+    <div class="button-container">
+        
+        <button class="back-to-home" onclick="window.location.href='index.html'">Back to Home</button>
+    </div>
+
+    <script src="colorBurst.js"></script>
+</body>
+</html>
